@@ -125,10 +125,10 @@ export const SearchBooksPage = () => {
       <div className="container">
         <div>
           <div className="row mt-5">
-            <div col-6>
+            <div className="col-6">
               <div className="d-flex">
                 <input
-                  className="fomm-control me-2"
+                  className="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-labelledby="Search"
