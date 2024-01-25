@@ -1,6 +1,7 @@
 package com.library.springbootlibrary.config;
 
 import com.library.springbootlibrary.entity.Book;
+import com.library.springbootlibrary.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -20,8 +21,10 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 HttpMethod.POST};
 
         configurer.exposeIdsFor(Book.class);
+        configurer.exposeIdsFor(Review.class);
 
         disableHttpMethod(Book.class, configurer,theUnsupportedActions);
+        disableHttpMethod(Review.class, configurer,theUnsupportedActions);
 
         /* Configure CORS Mapping */
         corsRegistry.addMapping(configurer.getBasePath() + "/**")
@@ -29,9 +32,9 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         
     }
 
-    private void disableHttpMethod(Class<Book> bookClass, RepositoryRestConfiguration configurer, HttpMethod[] theUnsupportedActions) {
+    private void disableHttpMethod(Class theClass, RepositoryRestConfiguration configurer, HttpMethod[] theUnsupportedActions) {
         configurer.getExposureConfiguration()
-                .forDomainType(bookClass)
+                .forDomainType(theClass)
                 .withItemExposure((metdata, httpMethods) ->
                         httpMethods.disable(theUnsupportedActions))
                 .withCollectionExposure((metdata, httpMethods) ->
