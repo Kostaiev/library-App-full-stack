@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.1</version>
+		<version>3.1.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.library</groupId>
@@ -47,6 +47,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.okta.spring/okta-spring-security-oauth2 -->
+		<dependency>
+			<groupId>com.okta.spring</groupId>
+			<artifactId>okta-spring-security-oauth2</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
