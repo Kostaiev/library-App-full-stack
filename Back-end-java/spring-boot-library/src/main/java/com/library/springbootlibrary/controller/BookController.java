@@ -20,7 +20,7 @@ public class BookController {
     @PutMapping("/secure/checkout")
     public Book checkoutBook (@RequestHeader(value = "Authorization") String token,
                               @RequestParam Long bookId) throws Exception{
-        String userEmail = ExtractJWT.payloadJWTExtraction(token,"\"sub\"");
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         return bookService.checkautBook(userEmail, bookId);
     }
 
@@ -31,7 +31,7 @@ public class BookController {
         return bookService.checkoutBookByUser(userEmail, bookId);
     }
 
-    @GetMapping("/secure/currentloans/count")
+    @GetMapping("/secure/currentLoans/count")
     public int currentLoansCount(@RequestHeader(value = "Authorization") String token) {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         return bookService.currentLoansCount(userEmail);
