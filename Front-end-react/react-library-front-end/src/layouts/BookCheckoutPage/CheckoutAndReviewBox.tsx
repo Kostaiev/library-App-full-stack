@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import BookModel from "../../models/BookModels";
+import { LeaveAReview } from "../Utils/LeaveAReview";
 
 export const CheckoutAndReviewBox: React.FC<{
-  book: BookModel | undefined, mobile: boolean, currentLoansCount: number, isAuthenticated: any, isCheckedOut: boolean, checkoutBook: any
+  book: BookModel | undefined, mobile: boolean, currentLoansCount: number, isAuthenticated: any,
+   isCheckedOut: boolean, checkoutBook: any, isReviewLeft: boolean, submitReview: any
 }> = (props) => {
 
 function buttonRendor(){
@@ -16,6 +18,15 @@ function buttonRendor(){
       }
   }
   return (<Link to={'/login'} className="btn btn-success btn-lg">Sign in</Link>)
+}
+
+function reviewRender(){
+  if(props.isAuthenticated && !props.isReviewLeft){
+    return <p><LeaveAReview submitReview={props.submitReview}/></p>
+  }else if(props.isAuthenticated && props.isReviewLeft){
+    return (<p><b>Thank for your review!</b></p>)
+  }
+  return (<div><hr/><p>Sign in to be able to leave a review.</p></div>)
 }
 
   return (
@@ -54,7 +65,7 @@ function buttonRendor(){
         <p className="mt-3">
           This number can chage until placing order has been complete.
         </p>
-        <p>Sign in to be able to leave a review.</p>
+        {reviewRender()}
       </div>
     </div>
   );

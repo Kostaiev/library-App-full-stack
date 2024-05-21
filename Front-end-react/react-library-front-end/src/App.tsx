@@ -11,6 +11,10 @@ import { oktaConfig } from "./lib/oktaConfig";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import { Security, LoginCallback } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget";
+import { ReviewListPage } from "./layouts/BookCheckoutPage/ReviewListPage/ReviewListPage";
+import { ShelfPage } from "./layouts/ShelfPage/ShelfPage";
+import SecurRoute from "./SecurRoute";
+
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -39,6 +43,7 @@ export const App = () => {
             <Route path="/" element={<Navigate to="/home" replace />}></Route>
             <Route path="/home" element={<HomePage />}></Route>
             <Route path="/search" element={<SearchBooksPage />}></Route>
+            <Route path="/reviewlist/:bookId" element={<ReviewListPage />}></Route>
             <Route
               path="/checkout/:bookId"
               element={<BookCheckoutPage />}
@@ -48,6 +53,10 @@ export const App = () => {
               element={<LoginWidget config={oktaConfig} />}
             ></Route>
             <Route path="/login/collback" element={<LoginCallback />}></Route>
+            <Route element={<SecurRoute/>}>
+                <Route path="/shelf" element={<ShelfPage/>} />
+            </Route>
+            
           </Routes>
         </div>
         <Footer />
